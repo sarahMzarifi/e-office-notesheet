@@ -1,0 +1,47 @@
+from django.urls import path
+from .views import (
+    NotesheetCommentView,
+    WorkflowAssignmentDecisionView,
+    MyWorkflowAssignmentsView,
+    WorkflowAssignmentDetailView,
+    WorkflowAssignmentForwardView,
+    WorkflowReviewerCreateView,
+    WorkflowReviewerListView,
+)
+urlpatterns = [
+    path(
+        "reviewers/",
+        WorkflowReviewerCreateView.as_view(),
+        name="workflow-reviewer-create",
+    ),
+    path(
+        "reviewers/list/",
+        WorkflowReviewerListView.as_view(),
+        name="workflow-reviewer-list",
+    ),
+    path(
+        "my-assignments/",
+        MyWorkflowAssignmentsView.as_view(),
+        name="my-workflow-assignments",
+    ),
+    path(
+        "assignments/<int:pk>/",
+        WorkflowAssignmentDetailView.as_view(),
+        name="workflow-assignment-detail",
+    ),
+    path(
+        "assignments/<int:pk>/forward/",
+        WorkflowAssignmentForwardView.as_view(),
+        name="workflow-assignment-forward",
+    ),
+    path(
+        "assignments/<int:pk>/decide/",
+        WorkflowAssignmentDecisionView.as_view(),
+        name="workflow-assignment-decide",
+    ),
+    path(
+        "notesheets/<int:notesheet_id>/comments/",
+        NotesheetCommentView.as_view(),
+        name="notesheet-comments",
+    ),
+]
